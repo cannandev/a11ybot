@@ -4,10 +4,11 @@ const form = document.querySelector('form')
 
 // Add event listener to submit button. Show response when clicked.
 form.addEventListener('submit', (e) => {
-  const textInput = document.getElementById('textInput')
+  const textInput = document.getElementById('textInput').value
 
   e.preventDefault()
-  buildResponse(textInput.value)
+  if (!textInput.trim().length) return // @TODO: show validation
+  buildResponse(textInput)
 })
 
 const buildResponse = (keyword) => {

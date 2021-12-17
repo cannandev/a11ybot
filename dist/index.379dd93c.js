@@ -463,16 +463,16 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
 const form = document.querySelector('form');
-const resourcesJSON = 'https://raw.githubusercontent.com/18F/charlie/main/config/a11ybot-resources.json';
 // Add event listener to submit button. Show response when clicked.
 form.addEventListener('submit', (e)=>{
-    const textInput = document.getElementById('textInput');
+    const textInput = document.getElementById('textInput').value;
     e.preventDefault();
-    buildResponse(textInput.value);
+    if (!textInput.trim().length) return; // @TODO: show validation
+    buildResponse(textInput);
 });
 const buildResponse = (keyword)=>{
     // get resources
-    _axiosDefault.default.get(resourcesJSON).then((response)=>response.data
+    _axiosDefault.default.get('https://raw.githubusercontent.com/18F/charlie/main/config/a11ybot-resources.json').then((response)=>response.data
     ).then((data)=>data.filter((link)=>{
             if (link.keywords.indexOf(keyword) > -1) return true;
         }).map((resource)=>{
