@@ -484,10 +484,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   display: flex;
 }
 
-.h-9 {
-  height: 2.25rem;
-}
-
 .items-start {
   align-items: flex-start;
 }
@@ -504,11 +500,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .border-zinc-300 {
   --tw-border-opacity: 1;
   border-color: rgb(212 212 216 / var(--tw-border-opacity));
-}
-
-.object-contain {
-  -o-object-fit: contain;
-     object-fit: contain;
 }
 
 .p-6 {
