@@ -467,9 +467,7 @@ var _axiosDefault = parcelHelpers.interopDefault(_axios);
  * @param {*} _
  * @returns keyword
  */ const getKeyword = (_)=>{
-    const textInput = document.getElementById('textInput');
-    const keyword = textInput.value;
-    // @TODO: show validation text on input
+    const keyword = document.getElementById('textInput').value;
     if (!keyword.trim().length) return;
     return keyword;
 };
@@ -496,17 +494,17 @@ var _axiosDefault = parcelHelpers.interopDefault(_axios);
  * Display list of resource links found. If none found, show menu of resources.
  * @param {*} HTMLString string returned by filterResources(keyword, data)
  */ const buildList = (HTMLString)=>{
-    const list = document.createElement('ul');
     const container = document.getElementsByTagName('article')[0];
-    const foundTextWrapper = document.createElement('em');
+    const list = document.createElement('ul');
+    list.innerHTML = HTMLString;
     const mascot = `<img src="https://emoji.slack-edge.com/T011QM4UN3G/a11y-ally/837f859d42c12db5.png"
           alt="Ally the A11ybot Mascot"/>`;
     const keyword = getKeyword();
-    const foundText = HTMLString.length > 0 ? `Here's what I found about <strong>"${keyword}"</strong>` : `I couldn't find anything about <strong>"${keyword}"</strong>`;
-    list.innerHTML = HTMLString;
-    foundTextWrapper.innerHTML = foundText;
+    const foundText = HTMLString.length > 0 ? `Here's what I found about <strong>${keyword}</strong>` : `I couldn't find anything about <strong>${keyword}</strong>`;
+    // Make sure found text is replaced every new search
+    container.previousElementSibling.innerHTML = foundText;
+    // Display the mascot and list
     container.innerHTML = mascot;
-    container.append(foundText);
     container.append(list);
 };
 /**
