@@ -25,3 +25,6 @@ TTS
 
 ## How to make A11ybot better
 Contribute! Commands to run locally:
+
+`npm install`
+`npm run start`
